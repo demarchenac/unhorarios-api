@@ -61,6 +61,8 @@ app.use(cors());
  */
 app.use('/UNHORARIOS/API/search', SEARCH_CONTROLLER);
 
+app.get('/status', (req, res) => { res.send('online'); });
+
 /**
  *  404 FALLBACK
  */
