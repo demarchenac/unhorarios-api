@@ -16,7 +16,7 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV.trim()}` });
 /**
  * LOAD CONTROLLERS
  */
-// const SEARCH_CONTROLLER = require('./controllers/search');
+const SEARCH_CONTROLLER = require('./controllers/search');
 /**
  * INITIALIZE APP
  */
@@ -59,12 +59,12 @@ app.use(cors());
 /**
  * USE CONTROLLERS
  */
-// app.use('/DETYRE/API/utils', SEARCH_CONTROLLER);
+app.use('/UNHORARIOS/API/search', SEARCH_CONTROLLER);
 
 /**
  *  404 FALLBACK
  */
-import { getErrorAt } from './helpers/error';
+import { getErrorAt } from './utils/error';
 app.use((req, res, next) => {
     const error = new Error(getErrorAt(0));
     error.status = 400;

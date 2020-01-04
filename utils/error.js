@@ -1,5 +1,8 @@
 const errors = [
     'Recurso no disponible.',                                               //0
+    'Campos vacíos.',                                                       //1
+    'Campos incompletos.',                                                  //2
+    'La longitud del campo ha de ser 7.',                                   //3
 ];
 
 /**
