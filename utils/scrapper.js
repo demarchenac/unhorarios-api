@@ -14,7 +14,7 @@ class Scrapper {
         };
 
         try {
-            const browser = await puppeteer.launch({ headless: false });
+            const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
             const page = await browser.newPage();
             page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36');
             await page.goto(this.url);
@@ -71,7 +71,7 @@ class Scrapper {
                 });
             }
             response.courses = courses;
-            //await browser.close();
+            await browser.close();
             return Promise.resolve(response);
         } catch (err) {
             console.error(err);
