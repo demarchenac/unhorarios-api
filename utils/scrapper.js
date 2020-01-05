@@ -35,9 +35,7 @@ class Scrapper {
                 courseNRC = parseInt(courseNRC);
                 taken = parseInt(taken);
                 size = parseInt(size);
-                let days = [];
-                let starts = [];
-                let ends = [];
+                let schedule = [];
                 let proffesors = [];
                 let lessonsLength = (await page.$$(`div.div${currentCourse} tbody > tr`)).length;
                 for (let currentLesson = 2; currentLesson <= lessonsLength; currentLesson++) {
@@ -48,14 +46,12 @@ class Scrapper {
                     if (day === 'R') day = 'jueves';
                     if (day === 'F') day = 'viernes';
                     if (day === 'S') day = 'sabado';
-                    days.push(day);
                     let duration = await page.$eval(`div.div0 tbody > tr:nth-child(${currentLesson}) > td:nth-child(4)`, td => td.innerText);
                     let start = parseInt(duration.split(' - ')[0].trim());
-                    starts.push(start);
                     let end = parseInt(duration.split(' - ')[1].trim());
                     let delta = 30 - parseInt(duration.split(' - ')[1].trim().slice(2));
                     end += delta;
-                    ends.push(end);
+                    schedule.push({ day: day, start: start, end: end });
                     let proffesor = await page.$eval(`div.div0 tbody > tr:nth-child(${currentLesson}) > td:nth-child(6)`, td => td.innerText);
                     proffesors.push(proffesor);
                 }
