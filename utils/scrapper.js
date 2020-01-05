@@ -60,9 +60,7 @@ class Scrapper {
                     nrc: courseNRC,
                     taken: taken,
                     size: size,
-                    days: days,
-                    starts: starts,
-                    ends: ends,
+                    schedule: schedule,
                     proffesors: proffesors
                 });
             }
