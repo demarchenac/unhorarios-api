@@ -13,10 +13,7 @@ import addRequestId from 'express-request-id';
  * LOAD ENVIROMENT VARIABLES
  */
 dotenv.config({ path: `.env.${process.env.NODE_ENV.trim()}` });
-/**
- * LOAD CONTROLLERS
- */
-const SEARCH_CONTROLLER = require('./controllers/search');
+console.log('.env loaded!')
 /**
  * INITIALIZE APP
  */
@@ -56,30 +53,13 @@ app.use(morgan(loggerFormat, {
  * ENABLE CORS
  */
 app.use(cors());
-/**
- * USE CONTROLLERS
- */
-app.use('/UNHORARIOS/API/search', SEARCH_CONTROLLER);
 
-app.get('/status', (req, res) => { res.send('online'); });
-
+console.log('Importing router!');
 /**
- *  404 FALLBACK
+ * LOAD ROUTER
  */
-import { getErrorAt } from './utils/error';
-app.use((req, res, next) => {
-    const error = new Error(getErrorAt(0));
-    error.status = 400;
-    next(error);
-})
-
-/**
- * ERROR HANDLING
- */
-app.use((error, req, res, next) => {
-    res.status(error.status || 500);
-    res.json({ errorMsg: error.message });
-})
+const router = require('./routes/router');
+app.use('/UNHORARIOS/API', router)
 
 app.listen(PORT, () => {
     console.log(`Server listening on PORT: ${PORT}`);

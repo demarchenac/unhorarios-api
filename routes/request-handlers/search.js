@@ -1,7 +1,7 @@
 'use-strict';
-import { Scrapper } from '../utils/scrapper';
-import { getErrorAt } from '../utils/error';
-
+import { Scrapper } from '../../utils/scrapper';
+import { getErrorAt } from '../../utils/error';
+console.log('Loading request handler!')
 let scrapper = new Scrapper();
 
 const obtainSubjectCourses = async (req, res, next) => {
@@ -9,8 +9,8 @@ const obtainSubjectCourses = async (req, res, next) => {
         console.log('[Obtain Subject Courses] shmu!');
         validateBody(req);
         validateSearchParam(req);
-        let text = req.body.courseCode.slice(0, 3);
-        let numeric = req.body.courseCode.slice(3);
+        let text = req.body.subjectCode.slice(0, 3);
+        let numeric = req.body.subjectCode.slice(3);
         let r = await scrapper.ObtainCourses(text, numeric);
         res.json(r);
     } catch (error) {

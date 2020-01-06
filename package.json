@@ -26,7 +26,9 @@
     "express-request-id": "^1.4.1",
     "helmet": "^3.21.2",
     "morgan": "^1.9.1",
-    "puppeteer": "^2.0.0"
+    "puppeteer": "^2.0.0",
+    "swagger-jsdoc": "^3.5.0",
+    "swagger-ui-express": "^4.1.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.2"

@@ -4,6 +4,7 @@ import puppeteer from 'puppeteer';
 
 class Scrapper {
     constructor() {
+        console.log('creating scrapper!');
         this.url = process.env.SCRAPPER_URL;
     }
 
